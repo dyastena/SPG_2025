@@ -1,26 +1,231 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Billing Summary</title>
-  <link rel="stylesheet" href="../shared/css/client.css" />
-</head>  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Method</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Inter", Arial, sans-serif;
+    }
+
+    body {
+      background-color: #fafafa;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #222;
+    }
+
+    .back-link {
+      align-self: flex-start;
+      text-decoration: none;
+      color: #555;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      width: 460px;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    p.subtitle {
+      color: #777;
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #eee;
+      margin-bottom: 25px;
+    }
+
+    .method {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: flex-start;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .method:hover {
+      border-color: #007bff;
+    }
+
+    .method input[type="radio"] {
+      margin-right: 10px;
+      accent-color: #007bff;
+      transform: scale(1.2);
+    }
+
+    .method.active {
+      border: 2px solid #007bff;
+      background-color: #f8fbff;
+    }
+
+    .method label {
+      display: flex;
+      flex-direction: column;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .method label span {
+      font-size: 13px;
+      color: #666;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 5px;
+    }
+
+    .form-group input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    .total {
+      font-weight: 700;
+      font-size: 16px;
+      margin-top: 25px;
+    }
+
+    .total span {
+      float: right;
+      color: #0057ff;
+    }
+
+    .btn-primary {
+      width: 100%;
+      background: linear-gradient(90deg, #007bff, #3399ff);
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+      margin-top: 20px;
+      transition: background 0.3s;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(90deg, #006ae6, #2288ff);
+    }
+  </style>
+</head>
 <body>
-  <div class="container">
-    <div class="card header">
-      <h1>Billing Summary</h1>
-      <p class="small">Review your charges before payment.</p>
+
+  <a href="#" class="back-link">← Go Back</a>
+
+  <div class="card">
+    <h1>Choose a payment method</h1>
+    <p class="subtitle">Select your preferred payment option below</p>
+    <hr>
+
+    <div class="method active">
+      <input type="radio" name="payment" id="credit" checked />
+      <label for="credit">
+        <strong>Credit Card</strong>
+        <span>Pay with Visa, Mastercard, etc..</span>
+      </label>
     </div>
 
-    <div class="card">
-      <div class="summary-row"><div>Base Charge</div><div>$120.00</div></div>
-      <div class="summary-row"><div>Taxes & Fees</div><div>$15.00</div></div>
-      <div class="summary-row"><div class="total">Total Due</div><div class="total">$135.00</div></div>
-      <div style="margin-top:16px" class="center"><a class="btn-primary" href="payment.html">Proceed to Payment</a></div>
+    <div class="method">
+      <input type="radio" name="payment" id="debit" />
+      <label for="debit">
+        <strong>Debit Card</strong>
+        <span>Use your bank debit card.</span>
+      </label>
     </div>
+
+    <div class="method">
+      <input type="radio" name="payment" id="ewallet" />
+      <label for="ewallet">
+        <strong>E - Wallet</strong>
+        <span>Pay with Visa, Mastercard, etc..</span>
+      </label>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="cardNumber">Card Number</label>
+        <input type="text" id="cardNumber" placeholder="2323 2323 2323 2323" />
+      </div>
+      <div class="form-group">
+        <label for="cardName">Name on Card</label>
+        <input type="text" id="cardName" placeholder="Johnny Bravo" />
+      </div>
+      <div class="form-group">
+        <label for="expiry">Expiry Date</label>
+        <input type="text" id="expiry" placeholder="12 / 25" />
+      </div>
+      <div class="form-group">
+        <label for="cvv">CVV</label>
+        <input type="text" id="cvv" placeholder="123" />
+      </div>
+    </div>
+
+    <div class="total">
+      Total Amount <span>Php 14,000.00</span>
+    </div>
+
+    <button class="btn-primary">Pay Now</button>
   </div>
-  <script src="../shared/js/main.js"></script>
-  <script src="../shared/js/client.js"></script>
+
+  <script>
+    const methods = document.querySelectorAll('.method');
+    methods.forEach(m => {
+      m.addEventListener('click', () => {
+        methods.forEach(el => el.classList.remove('active'));
+        m.classList.add('active');
+        m.querySelector('input').checked = true;
+      });
+    });
+  </script>
+
 </body>
 </html>
