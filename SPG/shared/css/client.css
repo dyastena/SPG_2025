@@ -1,0 +1,13 @@
+/* Client styles (basic) */
+@import url('reset.css');
+
+.container{max-width:920px;margin:36px auto;padding:20px}
+.card{background:#fff;border-radius:10px;padding:22px;box-shadow:0 10px 30px rgba(18,38,63,.06);}
+.header{margin-bottom:18px}
+.header h1{font-size:20px;color:#0b2540}
+.summary-row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #eef3fb}
+.total{font-weight:700;font-size:18px;color:#0b66ff}
+.form-field{margin:10px 0}
+.input{width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:6px}
+.btn-primary{background:#0b66ff;color:#fff;padding:10px 14px;border-radius:8px;display:inline-block;text-decoration:none}
+.center{text-align:center}

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin - Pricing Rule Management</title>
+  <link rel="stylesheet" href="../shared/css/admin.css" />
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="sidebar">
+      <h2>Admin</h2>
+      <a href="index.html">Pricing Rules</a>
+      <a href="create-rule.html">Create Rule</a>
+      <a href="manage-changes.html">Manage Changes</a>
+    </aside>
+
+    <main class="main">
+      <div class="card">
+        <h3>Standard Vehicle Rates</h3>
+        <table class="table">
+          <thead>
+            <tr><th>Vehicle</th><th>Day Rate</th><th>Night Rate</th><th>Actions</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Small</td><td>$20</td><td>$18</td><td><a class="btn" href="#">Edit</a></td></tr>
+            <tr><td>Medium</td><td>$30</td><td>$26</td><td><a class="btn" href="#">Edit</a></td></tr>
+            <tr><td>Large</td><td>$40</td><td>$36</td><td><a class="btn" href="#">Edit</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3 class="small">Quick Actions</h3>
+        <a class="btn" href="create-rule.html">Add New Rule</a>
+      </div>
+    </main>
+  </div>
+  <script src="../shared/js/main.js"></script>
+  <script src="../shared/js/admin.js"></script>
+</body>
+</html>

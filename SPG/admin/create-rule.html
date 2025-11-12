@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin - Create Pricing Rule</title>
+  <link rel="stylesheet" href="../shared/css/admin.css" />
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="sidebar">
+      <h2>Admin</h2>
+      <a href="index.html">Pricing Rules</a>
+      <a href="create-rule.html">Create Rule</a>
+      <a href="manage-changes.html">Manage Changes</a>
+    </aside>
+
+    <main class="main">
+      <div class="card">
+        <h3>Create New Pricing Rule</h3>
+        <form>
+          <div class="form-row">
+            <label class="small">Rule Name</label>
+            <input class="input" type="text" placeholder="e.g. Weekend Discount" />
+          </div>
+          <div style="margin-top:12px">
+            <a class="btn" href="#">Save Rule</a>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h4 class="small">Existing Rules</h4>
+        <table class="table">
+          <tbody>
+            <tr><td>Weekend Discount</td><td>10%</td><td><a class="btn" href="#">Edit</a></td></tr>
+            <tr><td>Holiday Premium</td><td>+15%</td><td><a class="btn" href="#">Edit</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+  <script src="../shared/js/main.js"></script>
+  <script src="../shared/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+/* Admin styles (basic) */
+@import url('reset.css');
+
+.admin-layout{display:flex;min-height:100vh}
+.sidebar{width:220px;background:linear-gradient(180deg,#0b2540,#253a50);color:#fff;padding:24px}
+.sidebar h2{font-size:18px;margin-bottom:12px}
+.sidebar a{display:block;color:#d6e6ff;margin:8px 0;text-decoration:none}
+.main{flex:1;padding:36px;background:linear-gradient(180deg,#f2f6fb,#e9eef7)}
+.card{background:#fff;border-radius:8px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.06);margin-bottom:18px}
+.table{width:100%;border-collapse:collapse}
+.table th,.table td{padding:10px;border-bottom:1px solid #eef3fb;text-align:left}
+.btn{display:inline-block;padding:8px 14px;border-radius:6px;background:#0b66ff;color:#fff;text-decoration:none}
+.small{font-size:13px;color:#667}
