@@ -1,26 +1,163 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Booking Confirmed</title>
-  <link rel="stylesheet" href="../shared/css/client.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Billing Summary</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Inter", Arial, sans-serif;
+    }
+
+    body {
+      background-color: #fafafa;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #222;
+    }
+
+    .back-link {
+      align-self: flex-start;
+      text-decoration: none;
+      color: #555;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      width: 420px;
+    }
+
+    h1 {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    p.subtitle {
+      color: #777;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 25px;
+    }
+
+    td {
+      padding: 10px 0;
+      font-size: 15px;
+    }
+
+    td:last-child {
+      text-align: right;
+      color: #444;
+    }
+
+    tr:not(:last-child) td {
+      border-bottom: 1px solid #eee;
+    }
+
+    .total {
+      font-weight: 700;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+
+    .total span {
+      float: right;
+      color: #0057ff;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #007bff, #3399ff);
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(90deg, #006ae6, #2288ff);
+    }
+
+    .btn-secondary {
+      background: white;
+      border: 1px solid #ccc;
+      color: #555;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+
+    .btn-secondary:hover {
+      background: #f3f3f3;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <div class="card header center">
-      <h1>Booking Confirmed</h1>
-      <p class="small">Thank you! Your booking is confirmed. A copy of your receipt has been sent to your email.</p>
+
+  <a href="#" class="back-link">← Go Back</a>
+
+  <div class="card">
+    <h1>Billing Summary</h1>
+    <p class="subtitle">Please review the charges for your rental period.</p>
+
+    <table>
+      <tr>
+        <td>Car Base Charge</td>
+        <td>Php 7,000.00</td>
+      </tr>
+      <tr>
+        <td>Damage Assessment Fee</td>
+        <td>Php 1,000.00</td>
+      </tr>
+      <tr>
+        <td>Fuel</td>
+        <td>Php 1,000.00</td>
+      </tr>
+      <tr>
+        <td>Security Deposit</td>
+        <td>Php 5,000.00</td>
+      </tr>
+    </table>
+
+    <div class="total">
+      Total Due <span>Php 14,000.00</span>
     </div>
 
-    <div class="card">
-      <h3 class="small">Receipt</h3>
-      <div class="summary-row"><div>Reservation</div><div>#ABC123</div></div>
-      <div class="summary-row"><div>Total Paid</div><div class="total">$135.00</div></div>
-      <div style="margin-top:12px" class="center"><a class="btn-primary" href="index.html">Back to Home</a></div>
+    <div class="buttons">
+      <button class="btn-primary">Proceed to payment</button>
+      <button class="btn-secondary">← Go Back</button>
     </div>
   </div>
-  <script src="../shared/js/main.js"></script>
-  <script src="../shared/js/client.js"></script>
+
 </body>
 </html>
