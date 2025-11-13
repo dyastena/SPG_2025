@@ -1,36 +1,201 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Payment</title>
-  <link rel="stylesheet" href="../shared/css/client.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Confirmed</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Inter", Arial, sans-serif;
+    }
+
+    body {
+      background-color: #fafafa;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #222;
+    }
+
+    .check-icon {
+      font-size: 60px;
+      color: #10b981;
+      background: #e8f9f1;
+      border-radius: 50%;
+      padding: 10px 20px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      margin: 5px 0;
+    }
+
+    p.subtitle {
+      color: #777;
+      font-size: 15px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      width: 480px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .company {
+      font-weight: 700;
+      font-size: 17px;
+    }
+
+    .booking-id {
+      color: #666;
+      font-size: 14px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #eee;
+      margin: 15px 0;
+    }
+
+    .info-section {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .info-section strong {
+      font-size: 15px;
+    }
+
+    .charges {
+      margin-bottom: 15px;
+    }
+
+    .charges table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .charges td {
+      padding: 8px 0;
+      font-size: 15px;
+    }
+
+    .charges td:last-child {
+      text-align: right;
+    }
+
+    .total {
+      font-weight: 700;
+      font-size: 17px;
+      margin-top: 20px;
+      border-top: 1px solid #eee;
+      padding-top: 15px;
+    }
+
+    .total span {
+      float: right;
+      color: #0057ff;
+    }
+
+    .payment-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f8f8f8;
+      border-radius: 8px;
+      padding: 15px;
+      font-size: 14px;
+      margin-top: 25px;
+    }
+
+    .payment-info div {
+      flex: 1;
+    }
+
+    .payment-info .status {
+      text-align: right;
+      font-weight: 600;
+      color: #10b981;
+    }
+
+    .payment-info .status::before {
+      content: "• ";
+      color: #10b981;
+      font-size: 20px;
+      vertical-align: middle;
+    }
+
+    .btn-download {
+      background: linear-gradient(90deg, #007bff, #3399ff);
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+      width: 100%;
+      margin-top: 25px;
+      transition: background 0.3s;
+    }
+
+    .btn-download:hover {
+      background: linear-gradient(90deg, #006ae6, #2288ff);
+    }
+
+  </style>
 </head>
 <body>
-  <div class="container">
-    <div class="card header">
-      <h1>Choose a payment method</h1>
+
+  <div class="check-icon">✔</div>
+  <h1>Booking Confirmed!</h1>
+  <p class="subtitle">Thank you for your reservation. A confirmation email has been sent to you.</p>
+
+  <div class="card">
+    <div class="header">
+      <div class="company">IT3D Car Rental Inc.</div>
+      <div class="booking-id">
+        Booking ID<br><strong>#CAR-1234XYZ</strong>
+      </div>
     </div>
 
-    <div class="card">
-      <form>
-        <div class="form-field">
-          <label class="small">Card Number</label>
-          <input class="input" placeholder="1234 5678 9012 3456" />
-        </div>
-        <div class="form-field">
-          <label class="small">Expiry</label>
-          <input class="input" placeholder="MM / YY" />
-        </div>
-        <div class="form-field">
-          <label class="small">CVC</label>
-          <input class="input" placeholder="CVC" />
-        </div>
-        <div style="margin-top:12px" class="center"><a class="btn-primary" href="confirmation.html">Pay Now</a></div>
-      </form>
+    <hr>
+
+    <div class="info-section">
+      <div>
+        <strong>Billed to</strong><br>
+        Johnny Bravo<br>
+        <span style="color:#555;">johnny.brabo@example.com</span>
+      </div>
+      <div style="text-align: right;">
+        <strong>Vehicle Details</strong><br>
+        Tesla Model 3<br>
+        <span style="color:#555;">Pickup: Nov. 13, 2025, 10:00 AM<br>
+        Drop-Off: Nov. 20, 2025, 10:00 AM</span>
+      </div>
     </div>
-  </div>
-  <script src="../shared/js/main.js"></script>
-  <script src="../shared/js/client.js"></script>
-</body>
-</html>
+
+    <div class="charges">
+      <table>
+        <tr>
+          <td>Car Base Charge (7 days)</td>
+          <td>Php 7,000.00</td>
+       
