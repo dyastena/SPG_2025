@@ -1,39 +1,360 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="h-full">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Admin - Manage Additional Charges</title>
-  <link rel="stylesheet" href="../shared/css/admin.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Additional Charges</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nico+Moji&display=swap" rel="stylesheet">
+    
+    <style>
+        /* All your common styles are here */
+        body { font-family: 'Inter', sans-serif; }
+        .font-nico-moji { font-family: 'Nico Moji', sans-serif; }
+        .app-bg { background-color: #0F172A; }
+        .sidebar-bg { background-color: #1E293B; }
+        .content-bg { background-image: radial-gradient(at top, #1E293B, #0F172A); }
+        .btn-nav.active { background-color: #2563EB; color: white; }
+        /* Modal styles */
+        #modal { transition: top 0.3s ease-out, opacity 0.3s ease-out; opacity: 0; top: 45%; }
+        #modal.active { opacity: 1; top: 50%; }
+        #modal-backdrop { opacity: 0; transition: opacity 0.3s ease-out; }
+        #modal-backdrop.active { opacity: 1; }
+        /* Cancel button style */
+        .btn-cancel-edit { display: none; }
+    </style>
 </head>
-<body>
-  <div class="admin-layout">
-    <aside class="sidebar">
-      <h2>Admin</h2>
-      <a href="index.html">Pricing Rules</a>
-      <a href="create-rule.html">Create Rule</a>
-      <a href="manage-changes.html">Manage Changes</a>
+<body class="app-bg h-full antialiased text-gray-200 flex">
+
+    <div 
+      class="absolute top-0 left-0 w-full h-20 z-10" 
+      style="background: linear-gradient(90.06deg, #4D5A68 -59.82%, #1E1E1E 49.37%, #4D5A68 159.63%);"
+    ></div>
+
+    <svg width="0" height="0" class="hidden">
+        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" id="icon-chevron-left">
+            <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 010 1.06L9.06 10l3.73 3.71a.75.75 0 11-1.06 1.06l-4.25-4.25a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 0z" clip-rule="evenodd" />
+        </symbol>
+        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" id="icon-pencil">
+            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+        </symbol>
+        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" id="icon-trash">
+            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 009 2zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+        </symbol>
+        <symbol xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" id="icon-close">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </symbol>
+    </svg>
+
+    <header class="absolute top-4 left-1/2 -translate-x-1/2 z-20 text-center">
+        <h1 class="font-nico-moji font-normal" style="font-size: 25px; letter-spacing: -0.05em;">
+            <span class="text-orange-500">REV</span><span class="text-white">ON</span>
+        </h1>
+        <p class="text-xs font-medium text-gray-400 tracking-widest">CAR RENTALS</p>
+    </header>
+
+    <aside class="w-64 sidebar-bg px-6 pb-6 pt-28 flex-none flex flex-col">
+        <a href="#" class="flex items-center text-sm text-gray-400 hover:text-gray-200 mb-8">
+            <svg class="w-5 h-5"><use href="#icon-chevron-left"></use></svg>
+            <span class="ml-1">Pricing Rule Management</span>
+        </a>
+        
+        <nav class="flex flex-col space-y-2">
+            <a href="index.html" class="btn-nav w-full text-left px-4 py-3 rounded-lg text-gray-300 hover:bg-slate-700">
+                Standard Rates
+            </a>
+            <a href="create-rule.html" class="btn-nav w-full text-left px-4 py-3 rounded-lg text-gray-300 hover:bg-slate-700">
+                Dynamic Pricing
+            </a>
+            <a href="manage-changes.html" class="btn-nav w-full text-left px-4 py-3 rounded-lg text-gray-300 hover:bg-slate-700 active">
+                Additional Charges
+            </a>
+        </nav>
     </aside>
 
-    <main class="main">
-      <div class="card">
-        <h3>Manage Additional Charges</h3>
-        <p class="small">Add or remove extra fees and surcharges.</p>
-        <div style="margin-top:12px"><a class="btn" href="#">Add Charge</a></div>
-      </div>
+    <main class="flex-1 h-full overflow-y-auto">
+        <div class="content-bg rounded-tl-3xl shadow-xl min-h-full pt-28 px-10 pb-10 relative">
+            
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-white">Pricing Rule Management</h1>
+                <p class="text-gray-400 mt-1">Manage all pricing rules for the vehicle rental service</p>
+            </div>
 
-      <div class="card">
-        <h4 class="small">Existing Charges</h4>
-        <table class="table">
-          <tbody>
-            <tr><td>Cleaning Fee</td><td>$12</td><td><a class="btn" href="#">Edit</a></td></tr>
-            <tr><td>Airport Surcharge</td><td>$7</td><td><a class="btn" href="#">Edit</a></td></tr>
-          </tbody>
-        </table>
-      </div>
+            <div class="space-y-8">
+                <div class="bg-white text-gray-900 rounded-xl shadow-2xl p-6">
+                    <h2 class="text-xl font-semibold mb-6">Manage Additional Charges</h2>
+                    <form id="form-additional-charges" class="space-y-6">
+                        <input type="hidden" id="additional-charge-id">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="charge-name" class="block mb-2 text-sm font-medium text-gray-700">Charge name</label>
+                                <input type="text" id="charge-name" class="bg-gray-100 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="e.g., GPS Rental" required>
+                            </div>
+                            <div>
+                                <label class="block mb-2 text-sm font-medium text-gray-700">Charge Type</label>
+                                <div class="flex rounded-lg border border-gray-300">
+                                    <button type="button" class="charge-type-btn flex-1 p-2.5 bg-blue-100 text-blue-700 font-medium rounded-l-lg text-sm border-r border-gray-300" data-type="Flat Fee">Flat Fee</button>
+                                    <button type="button" class="charge-type-btn flex-1 p-2.5 bg-gray-100 text-gray-500 font-medium rounded-r-lg text-sm hover:bg-gray-200" data-type="Percentage">Percentage</button>
+                                </div>
+                                <input type="hidden" id="charge-type" value="Flat Fee">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="amount" class="block mb-2 text-sm font-medium text-gray-700">Amount</label>
+                            <div class="relative">
+                                <span id="amount-prefix" class="absolute inset-y-0 left-4 flex items-center text-gray-500">Php</span>
+                                <input type="text" id="amount" class="bg-gray-100 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-12" placeholder="150.00" required>
+                                <span id="amount-suffix" class="absolute inset-y-0 right-4 flex items-center text-gray-500 hidden">%</span>
+                            </div>
+                        </div>
+                        <div class="text-right space-x-3">
+                            <button type="button" id="btn-cancel-charge" onclick="cancelEditAdditionalCharge()" class="btn-cancel-edit bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2.5 px-5 rounded-lg">
+                                Cancel
+                            </button>
+                            <button type="submit" id="btn-save-additional-charge" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-5 rounded-lg">
+                                Add Charge
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="bg-white text-gray-900 rounded-xl shadow-2xl overflow-hidden">
+                    <div class="p-6">
+                        <h2 class="text-xl font-semibold">Existing Rules</h2>
+                    </div>
+                    
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Charge Name</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-additional-charges" class="divide-y divide-gray-200">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
     </main>
-  </div>
-  <script src="../shared/js/main.js"></script>
-  <script src="../shared/js/admin.js"></script>
+
+    <div id="modal-backdrop" class="fixed inset-0 bg-black bg-opacity-70 z-40 hidden" onclick="closeModal()"></div>
+    <div id="modal" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-xl shadow-2xl z-50 w-full max-w-lg p-6 hidden text-gray-900">
+        <div class="flex justify-between items-center mb-6">
+            <h3 id="modal-title" class="text-xl font-semibold">Modal Title</h3>
+            <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 p-1 rounded-full">
+                <svg class="w-6 h-6"><use href="#icon-close"></use></svg>
+            </button>
+        </div>
+        <div id="modal-content">
+            </div>
+    </div>
+
+    <script>
+        // --- STATE MANAGEMENT ---
+        const state = {
+            // standardRates is removed
+            // dynamicRules is removed
+            additionalCharges: [
+                { id: 1, name: 'GPS Rental', type: 'Flat Fee', amount: 500 },
+                { id: 2, name: 'Insurance Surcharge', type: 'Percentage', amount: 15 },
+                { id: 3, name: 'Child Seat', type: 'Flat Fee', amount: 900 },
+                { id: 4, name: 'Deep Cleaning', type: 'Flat Fee', amount: 1500 },
+            ],
+            editingChargeId: null,
+        };
+
+        // Utility to format as currency
+        const formatter = new Intl.NumberFormat('en-PH', {
+            style: 'currency',
+            currency: 'PHP',
+        });
+
+        // --- MODAL CONTROLS (COMMON) ---
+        const modal = document.getElementById('modal');
+        const modalBackdrop = document.getElementById('modal-backdrop');
+        const modalTitle = document.getElementById('modal-title');
+        const modalContent = document.getElementById('modal-content');
+
+        function openModal(title, content) {
+            modalTitle.innerText = title;
+            modalContent.innerHTML = content;
+            modalBackdrop.classList.add('active');
+            modalBackdrop.classList.remove('hidden');
+            modal.classList.add('active');
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            modal.classList.add('hidden');
+            modalBackdrop.classList.remove('active');
+            modalBackdrop.classList.add('hidden');
+            modalTitle.innerText = '';
+            modalContent.innerHTML = '';
+        }
+
+        // --- RENDER FUNCTIONS ---
+        // Renders the Additional Charges table
+        function renderAdditionalCharges() {
+            const tbody = document.getElementById('tbody-additional-charges');
+            tbody.innerHTML = state.additionalCharges.map(charge => `
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap font-medium">${charge.name}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-gray-600">${charge.type}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-gray-600">
+                        ${charge.type === 'Flat Fee' ? formatter.format(charge.amount) : `${charge.amount}%`}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-4">
+                        <button class="text-gray-400 hover:text-blue-600" onclick="editAdditionalCharge(${charge.id})">
+                            <svg class="w-5 h-5"><use href="#icon-pencil"></use></svg>
+                        </button>
+                        <button class="text-gray-400 hover:text-red-600" onclick="confirmDelete(${charge.id})">
+                            <svg class="w-5 h-5"><use href="#icon-trash"></use></svg>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // --- STANDARD RATES (REMOVED) ---
+        // --- DYNAMIC PRICING (REMOVED) ---
+
+        // --- ADDITIONAL CHARGES (ON-PAGE FORM) ---
+        const chargeForm = document.getElementById('form-additional-charges');
+        const chargeIdInput = document.getElementById('additional-charge-id');
+        const chargeNameInput = document.getElementById('charge-name');
+        const chargeTypeInput = document.getElementById('charge-type');
+        const chargeAmountInput = document.getElementById('amount');
+        const chargeSubmitButton = document.getElementById('btn-save-additional-charge');
+        const chargeCancelButton = document.getElementById('btn-cancel-charge');
+        const chargeTypeButtons = document.querySelectorAll('.charge-type-btn');
+        const amountPrefix = document.getElementById('amount-prefix');
+        const amountSuffix = document.getElementById('amount-suffix');
+
+        // Handle charge type button toggle
+        chargeTypeButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                chargeTypeButtons.forEach(b => {
+                    b.classList.remove('bg-blue-100', 'text-blue-700');
+                    b.classList.add('bg-gray-100', 'text-gray-500', 'hover:bg-gray-200');
+                });
+                btn.classList.add('bg-blue-100', 'text-blue-700');
+                btn.classList.remove('bg-gray-100', 'text-gray-500', 'hover:bg-gray-200');
+                
+                const type = btn.dataset.type;
+                chargeTypeInput.value = type;
+
+                if (type === 'Percentage') {
+                    amountPrefix.classList.add('hidden');
+                    amountSuffix.classList.remove('hidden');
+                    chargeAmountInput.classList.remove('pl-12');
+                    chargeAmountInput.classList.add('pr-12');
+                } else {
+                    amountPrefix.classList.remove('hidden');
+                    amountSuffix.classList.add('hidden');
+                    chargeAmountInput.classList.add('pl-12');
+                    chargeAmountInput.classList.remove('pr-12');
+                }
+            });
+        });
+
+        // Handle the "Add Charge" or "Update Charge" submit
+        function handleSaveAdditionalCharge(event) {
+            event.preventDefault();
+            const id = state.editingChargeId;
+            const chargeData = {
+                name: chargeNameInput.value,
+                type: chargeTypeInput.value,
+                amount: Number(chargeAmountInput.value),
+            };
+
+            if (id) {
+                // Update
+                const index = state.additionalCharges.findIndex(c => c.id === id);
+                state.additionalCharges[index] = { ...state.additionalCharges[index], ...chargeData };
+            } else {
+                // Add new
+                chargeData.id = Date.now();
+                state.additionalCharges.push(chargeData);
+            }
+            
+            renderAdditionalCharges();
+            cancelEditAdditionalCharge(); // Resets form
+        }
+
+        // Populates the form for editing
+        function editAdditionalCharge(id) {
+            const charge = state.additionalCharges.find(c => c.id === id);
+            if (!charge) return;
+
+            state.editingChargeId = id;
+            chargeIdInput.value = id;
+            chargeNameInput.value = charge.name;
+            chargeAmountInput.value = charge.amount;
+            
+            // Trigger click on the correct type button
+            document.querySelector(`.charge-type-btn[data-type="${charge.type}"]`).click();
+
+            chargeSubmitButton.innerText = 'Update Charge';
+            chargeCancelButton.style.display = 'inline-block';
+            chargeForm.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Resets the form
+        function cancelEditAdditionalCharge() {
+            state.editingChargeId = null;
+            chargeForm.reset();
+            chargeIdInput.value = '';
+            chargeSubmitButton.innerText = 'Add Charge';
+            chargeCancelButton.style.display = 'none';
+            // Reset type button to default
+            document.querySelector('.charge-type-btn[data-type="Flat Fee"]').click();
+        }
+
+        // --- SECURITY DEPOSIT (REMOVED) ---
+
+        // --- DELETE FUNCTIONS ---
+        // Shows the delete confirmation modal
+        function confirmDelete(id) {
+            const item = state.additionalCharges.find(i => i.id === id);
+            const itemName = item.name;
+            const content = `
+                <p>Are you sure you want to delete the rule: <strong>${itemName}</strong>?</p>
+                <p class="text-sm text-gray-500 mt-1">This action cannot be undone.</p>
+                <div class="text-right mt-6 space-x-3">
+                    <button onclick="closeModal()" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-lg">
+                        Cancel
+                    </button>
+                    <button onclick="deleteItem(${id})" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg">
+                        Delete
+                    </button>
+                </div>
+            `;
+            openModal('Confirm Deletion', content);
+        }
+
+        // Performs the actual deletion
+        function deleteItem(id) {
+            state.additionalCharges = state.additionalCharges.filter(i => i.id !== id);
+            renderAdditionalCharges();
+            closeModal();
+        }
+
+        // --- INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Render the table
+            renderAdditionalCharges();
+
+            // Attach form listeners
+            chargeForm.addEventListener('submit', handleSaveAdditionalCharge);
+        });
+    </script>
+
 </body>
 </html>
