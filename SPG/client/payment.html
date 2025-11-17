@@ -1,36 +1,261 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Payment</title>
-  <link rel="stylesheet" href="../shared/css/client.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Confirmed</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Inter", Arial, sans-serif;
+    }
+
+    body {
+      background-color: #fafafa;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #222;
+    }
+
+    .check-icon {
+      background-color: #00b300;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 10px rgba(0, 179, 0, 0.3);
+    }
+
+    .check-icon svg {
+      width: 45px;
+      height: 45px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    h1 {
+      font-size: 26px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    p.subtitle {
+      color: #777;
+      font-size: 15px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      width: 520px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .company {
+      font-weight: 700;
+      font-size: 17px;
+    }
+
+    .booking-id {
+      font-size: 13px;
+      color: #555;
+      text-align: right;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #eee;
+      margin: 15px 0;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .info-grid div {
+      margin-bottom: 10px;
+    }
+
+    .info-grid strong {
+      font-weight: 600;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    td {
+      padding: 8px 0;
+    }
+
+    td:last-child {
+      text-align: right;
+      color: #444;
+    }
+
+    tr:not(:last-child) td {
+      border-bottom: 1px solid #eee;
+    }
+
+    .total {
+      font-weight: 700;
+      font-size: 16px;
+      margin-top: 15px;
+    }
+
+    .total span {
+      float: right;
+      color: #0057ff;
+    }
+
+    .transaction-box {
+      background: #f8f8f8;
+      border-radius: 8px;
+      padding: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      margin-top: 20px;
+    }
+
+    .transaction-box div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .status {
+      text-align: right;
+    }
+
+    .status .dot {
+      width: 8px;
+      height: 8px;
+      background: #00b300;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 5px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      background: linear-gradient(90deg, #007bff, #3399ff);
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+      margin-top: 25px;
+      transition: background 0.3s;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(90deg, #006ae6, #2288ff);
+    }
+
+  </style>
 </head>
 <body>
-  <div class="container">
-    <div class="card header">
-      <h1>Choose a payment method</h1>
+
+  <!-- ✅ Modern green check icon -->
+  <div class="check-icon">
+    <svg viewBox="0 0 24 24">
+      <path d="M20 6L9 17l-5-5" />
+    </svg>
+  </div>
+
+  <h1>Booking Confirmed!</h1>
+  <p class="subtitle">Thank you for your reservation. A confirmation email has been sent to you.</p>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="company">IT3D Car Rental Inc.</div>
+      <div class="booking-id">
+        Booking ID<br><strong>#CAR-1234XYZ</strong>
+      </div>
+    </div>
+    <hr>
+
+    <div class="info-grid">
+      <div>
+        <strong>Billed to</strong><br>
+        Johnny Bravo<br>
+        johnny.brabo@example.com
+      </div>
+      <div>
+        <strong>Vehicle Details</strong><br>
+        Tesla Model 3<br>
+        Pickup: Nov. 13, 2025, 10:00 AM<br>
+        Drop-Off: Nov. 20, 2025, 10:00 AM
+      </div>
     </div>
 
-    <div class="card">
-      <form>
-        <div class="form-field">
-          <label class="small">Card Number</label>
-          <input class="input" placeholder="1234 5678 9012 3456" />
-        </div>
-        <div class="form-field">
-          <label class="small">Expiry</label>
-          <input class="input" placeholder="MM / YY" />
-        </div>
-        <div class="form-field">
-          <label class="small">CVC</label>
-          <input class="input" placeholder="CVC" />
-        </div>
-        <div style="margin-top:12px" class="center"><a class="btn-primary" href="confirmation.html">Pay Now</a></div>
-      </form>
+    <table>
+      <tr>
+        <td>Car Base Charge (7 days)</td>
+        <td>Php 7,000.00</td>
+      </tr>
+      <tr>
+        <td>Damage Assessment Fee</td>
+        <td>Php 1,000.00</td>
+      </tr>
+      <tr>
+        <td>Fuel</td>
+        <td>Php 1,000.00</td>
+      </tr>
+      <tr>
+        <td>Security Deposit</td>
+        <td>Php 5,000.00</td>
+      </tr>
+    </table>
+
+    <div class="total">
+      Total Amount <span>Php 14,000.00</span>
     </div>
+
+    <div class="transaction-box">
+      <div>
+        <strong>TRANS ID</strong>
+        #TRN-987654321
+      </div>
+      <div>
+        <strong>PAYMENT METHOD</strong>
+        Visa **** 2323
+      </div>
+      <div class="status">
+        <strong>STATUS</strong>
+        <span><span class="dot"></span>Paid</span>
+      </div>
+    </div>
+
+    <button class="btn-primary">Download Receipt (pdf)</button>
   </div>
-  <script src="../shared/js/main.js"></script>
-  <script src="../shared/js/client.js"></script>
+
 </body>
 </html>
